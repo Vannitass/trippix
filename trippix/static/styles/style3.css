@@ -1,0 +1,135 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+	margin: 0; 
+	padding: 0; 
+	background-color: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+	box-sizing: border-box
+ 
+}
+
+a{
+	text-decoration: none;
+}
+
+
+
+.registr-div{
+	margin: 10px;
+
+}
+.registr-logo-text{
+	padding-top:15px;
+	margin-left:10px;
+	height: 50px;
+	width: 175px;
+
+}
+
+.registr-bar{
+	margin:150px;
+/*	background-color:#D9D9D9;*/
+	border: 3px solid black;
+	border-radius:30px;
+	box-shadow: 4px 4px 48px rgba(0, 0, 0, 0.07);
+	padding-top:150px;
+	padding-bottom:150px;
+    display: flex;
+    flex-direction:column ;
+    justify-content: flex-start;
+    justify-content: center;
+    text-align: center;
+    margin-left:33%;
+    margin-right:33%;
+}
+
+.registr-text{
+	margin:20px;
+	font-weight: bold;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.registr-button{
+  appearance: none;
+  background-color: #000000;
+  border: 2px solid #1A1A1A;
+  border-radius: 40px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 150px;
+  height: 65px;
+
+  will-change: transform;
+}
+
+.registr-button:disabled {
+  pointer-events: none;
+}
+
+.registr-button:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.registr-button:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.button-div{
+	margin:20px;
+}
+
+
+
+
+.input-term {
+  width: 60%;
+  border: 2px solid white;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 4px 15px;
+
+  padding: 5px;
+  height: 30px;
+
+  outline: none;
+  font-weight: bold;
+  font-family: 'Open Sans', sans-serif;
+  border-color: white;
+  border-radius:10px;
+  	
+}
+
+.loggin-input-term:focus{
+  color: black;
+
+}
+
+
+
+.text-login{
+/*	margin:20px;*/
+	font-weight: bold;
+	font-family: 'Open Sans', sans-serif;
+	font-size:13px;
+	text-decoration:none;
+	color:black;
+}
+

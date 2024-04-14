@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+  <head>
+
+    <meta charset ="UTF-8">
+    <title>Trippix sign up account</title>
+     <link rel="stylesheet" type="text/css" href="{% static 'styles/style3.css' %}">
+    <link rel="shortcut icon"  href="{% static 'images/logo.png' %}" type="image/png">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/style-navigation-bar.css' %}"/>
+
+    <link rel="shortcut icon" href="images/logo.png" type="image/png">
+
+  </head>
+
+
+  <body>
+
+<!--  <div class = "nav-bar-mrg">-->
+<!--      <div class = "top-nav-bar-div">-->
+<!--        <a href = "" class = "top-nav-bar-logo"><img class="top-nav-bar-logo" src="images/logo.png" alt="" /></a>-->
+
+
+<!--        <ul class = "top-nav-bar-ul">-->
+<!--          <li class = "top-nav-bar-li"><a class = "top-nav-bar-text"href = "">Home</a></li>-->
+<!--          <li class = "top-nav-bar-li"><a class = "top-nav-bar-text" href = "">Add</a></li>-->
+<!--        </ul> -->
+
+
+
+
+
+
+<!--        <div class="top-nav-bar-search">-->
+<!--          <input type="search" class="top-nav-bar-search-term" placeholder="Search">-->
+<!--          &lt;!&ndash; <button type="submit" class="searchButton"> </button> &ndash;&gt;-->
+<!--        </div>-->
+
+
+<!--        <div class = "top-nav-bar-notification" >-->
+<!--          <a href = ""> <img class="top-nav-bar-notification-image" src="images/notification.png" alt="" /> -->
+<!--          </a> -->
+<!--        </div>-->
+
+<!--        <div class = "top-nav-bar-user">-->
+<!--          <a  href = ""><img class="top-nav-bar-user-image" src="images/user-image.jpg" alt="" />-->
+<!--          </a>-->
+<!--        </div> -->
+
+<!--        -->
+<!--      </div>-->
+<!--    </div>-->
+
+  <div class="registr-bar">
+        <div class="registr-div">
+            <img class="login-logo" src="{% static 'images/logo.png' %}" alt="" />
+        </div>
+
+        <h1 class="registr-text">Let's start registration</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="registr-div">
+                <input type="email" class="input-term" placeholder="Email" name="email">
+            </div>
+
+            <div class="registr-div">
+                <input type="text" class="input-term" placeholder="Username" name="logging">
+            </div>
+
+            <div class="registr-div">
+                <input type="password" maxlength="25" class="input-term" placeholder="Password" name="password">
+            </div>
+
+            <div class="button-div">
+                <button type="submit" class="registr-button" role="button">Sign up</button>
+            </div>
+        </form>
+
+        <a href="{% url 'login' %}" class="text-login">I have an account</a>
+    </div>
+
+  </body>
+</html>
+

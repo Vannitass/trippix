@@ -1,0 +1,133 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+	margin: 0; 
+	padding: 0; 
+	background-color: #f2f2f2;
+	font-family: 'Open Sans', sans-serif;
+	box-sizing: border-box
+  
+  
+}
+a{
+	text-decoration: none;
+}
+
+
+
+.bar-to-add-image{
+/*  float: left;*/
+  display: flex;
+  align-items:center;
+  justify-content: center;
+
+
+
+}
+
+
+.card-add-image{
+	background-color:#AFAFAF;
+	border-radius:30px;
+	height: 500px;
+	width: 400px;
+/*	margin-left:200px;
+	margin-right:50px;*/
+
+}
+
+
+.input-div{
+	margin:30px;
+}
+
+.input-div-button-palce{
+ 	display: flex;
+	justify-content: right;
+}
+
+.input-term{
+  border: 2px solid white;
+  box-shadow: rgba(0, 0, 0, 0.15) 0 4px 15px;
+  padding: 5px;
+	resize: none;
+  outline: none;
+  font-weight: bold;
+  font-family: 'Open Sans', sans-serif;
+  border-color: white;
+  border-radius:10px; 	
+}
+
+
+.input-term-title{
+	width:920px;
+	height:40px;
+	font-size:18px;
+}
+
+.input-term-description{
+	width:920px;
+	height:200px;
+}
+
+.input-term-tegs{
+	width:920px;
+	height:50px;
+}
+
+
+
+
+
+.add-button{
+  appearance: none;
+  background-color: #000000;
+  border: 2px solid #1A1A1A;
+  border-radius: 20px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 200px;
+  height: 65px;
+
+  will-change: transform;
+}
+
+.add-button:disabled {
+  pointer-events: none;
+}
+
+.add-button:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.add-button:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+
+
+.div-all-input{
+  padding-top:100px;
+
+}
+
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+  <head>
+
+    <meta charset ="UTF-8">
+    <title>Trippix home page </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/style1.css' %}">
+    <link rel="shortcut icon"  href="{% static 'images/logo.png' %}" type="image/png">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/style-navigation-bar.css' %}"/>
+    <script src="{% static 'js/logout.js' %}"></script>
+
+  </head>
+
+
+  <body>
+
+    <div class = "nav-bar-mrg">
+      <div class = "top-nav-bar-div">
+        <a href = "" class = "top-nav-bar-logo"><img class="top-nav-bar-logo" src="{% static 'images/logo.png' %}" alt="" /></a>
+
+
+        <ul class = "top-nav-bar-ul">
+          <li class = "top-nav-bar-li"><a class = "top-nav-bar-text"href = "">Home</a></li>
+          <li class = "top-nav-bar-li"><a class = "top-nav-bar-text" href = "">Add</a></li>
+        </ul> 
+
+        <div class="top-nav-bar-search">
+          <input type="search" class="top-nav-bar-search-term" placeholder="Search">
+          <!-- <button type="submit" class="searchButton"> </button> -->
+        </div>
+
+
+        <div class = "top-nav-bar-notification" >
+          <a href = ""> <img class="top-nav-bar-notification-image" src="{% static 'images/notification.png' %}" alt="" />
+          </a> 
+        </div>
+
+        <div class = "top-nav-bar-user">
+                <a href="{% url 'userpage'  %}"><img class="top-nav-bar-user-image" src="{% static 'images/user-image.jpg' %}" alt="" /></a>
+        </div> 
+
+        
+      </div>
+    </div>
+
+
+
+
+  <div class="table-div">
+    {% for product in products_data %}
+        {% if forloop.counter0|divisibleby:4 and not forloop.first %}
+            </div><div class="table-div">
+        {% endif %}
+        <a href = "" style = "text-decoration:none;">
+            <div class="card">
+                <img class="card-image" src="{{ product.card_image }}" alt="" />
+                <div class="card-about">
+                    <img class="card-image-user" src="{{ product.card_image_user }}" alt="" />
+                    <b class="card-text">{{ product.title }}</b>
+
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+
+    </body>
+
+
+
+
+
+</html>

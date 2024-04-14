@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+  <head>
+
+    <meta charset ="UTF-8">
+    <title>Trippix login account</title>
+      <link rel="stylesheet" type="text/css" href="{% static 'styles/style2.css' %}">
+    <link rel="shortcut icon"  href="{% static 'images/logo.png' %}" type="image/png">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/style-navigation-bar.css' %}"/>
+
+  </head>
+
+
+  <body>
+
+<!--  <div class = "nav-bar-mrg">-->
+<!--      <div class = "top-nav-bar-div">-->
+<!--        <a href = "" class = "top-nav-bar-logo"><img class="top-nav-bar-logo" src="{% static 'images/logo.png' %}" alt="" /></a>-->
+
+
+<!--        <ul class = "top-nav-bar-ul">-->
+<!--          <li class = "top-nav-bar-li"><a class = "top-nav-bar-text"href = "">Home</a></li>-->
+<!--          <li class = "top-nav-bar-li"><a class = "top-nav-bar-text" href = "">Add</a></li>-->
+<!--        </ul> -->
+
+<!--        <div class="top-nav-bar-search">-->
+<!--          <input type="search" class="top-nav-bar-search-term" placeholder="Search">-->
+<!--          &lt;!&ndash; <button type="submit" class="searchButton"> </button> &ndash;&gt;-->
+<!--        </div>-->
+
+
+<!--        <div class = "top-nav-bar-notification" >-->
+<!--          <a href = ""> <img class="top-nav-bar-notification-image" src="{% static 'images/notification.png' %}" alt="" />-->
+<!--          </a> -->
+<!--        </div>-->
+
+<!--        <div class = "top-nav-bar-user">-->
+<!--          <a  href = ""><img class="top-nav-bar-user-image" src="{% static 'images/user-image.jpg' %}" alt="" />-->
+<!--          </a>-->
+<!--        </div> -->
+
+<!--        -->
+<!--      </div>-->
+<!--    </div>-->
+
+   <div class="login-bar">
+    <div class="loggin-div">
+        <img class="logo-img" src="{% static 'images/logo.png' %}" alt="" />
+    </div>
+
+    <h1 class="login-text"> Login account</h1>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="loggin-div">
+            <input type="text" class="loggin-input-term" placeholder="Login" id="login" name="login" required>
+        </div>
+
+        <div class="loggin-div">
+            <input type="password" class="loggin-input-term" placeholder="Password" id="password" name="password" required>
+        </div>
+
+        <div class="button-div">
+            <button type="submit" class="login-button">Log in</button>
+        </div>
+    </form>
+
+    <a href="{% url 'register' %}" class="text-registr">create new account</a>
+</div>
+
+  </body>
+</html>
+

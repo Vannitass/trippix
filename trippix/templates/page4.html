@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+  <head>
+
+    <meta charset ="UTF-8">
+    <title>Trippix home page </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/style4.css' %}">
+    <link rel="shortcut icon"  href="{% static 'images/logo.png' %}" type="image/png">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/style-navigation-bar.css' %}"/>
+
+  </head>
+
+
+  <script>
+
+    function setact( elem ){
+    var btnEl = document.querySelectorAll('.button-feed-tab');
+    for (var i = 0; i < btnEl.length; i++) {
+        btnEl[i].classList.remove('button-feed-tab-swap');
+    }
+    elem.classList.add('button-feed-tab-swap');
+    return;
+    }
+
+  </script>
+
+  <body>
+
+     <div class = "nav-bar-mrg">
+      <div class = "top-nav-bar-div">
+        <a href = "home" class = "top-nav-bar-logo"><img class="top-nav-bar-logo" src="{% static 'images/logo.png' %}" alt="" /></a>
+
+
+        <ul class = "top-nav-bar-ul">
+          <li class = "top-nav-bar-li"><a class = "top-nav-bar-text"href = "home">Home</a></li>
+          <li class = "top-nav-bar-li"><a class = "top-nav-bar-text" href = "">Add</a></li>
+        </ul> 
+
+        <div class="top-nav-bar-search">
+          <input type="search" class="top-nav-bar-search-term" placeholder="Search">
+          <!-- <button type="submit" class="searchButton"> </button> -->
+        </div>
+
+
+        <div class = "top-nav-bar-notification" >
+          <a href = ""> <img class="top-nav-bar-notification-image" src="{% static 'images/notification.png' %}" alt="" />
+          </a> 
+        </div>
+
+        <div class = "top-nav-bar-user">
+          <a  href = ""><img class="top-nav-bar-user-image" src="{% static 'images/user-image.jpg' %}" alt="" />
+          </a>
+        </div> 
+
+        
+      </div>
+    </div>
+
+
+
+
+    <div class = "user-div">
+      <div>
+        <img class = "prof-user-img" src="{% static 'images/user-image.jpg' %}" alt="" />
+       </div>
+       
+
+        <b class = "username-text" >{{ username }}</b>
+
+        <div class = "sub-user-div">
+          <a class = "sub-user-text"href=""><b style="font-weight:normal;" >Подписчики 10</b></a>
+          <b style = "margin-left:10px; margin-right:10px;">·</b>
+          <a class = "sub-user-text"href=""><b style="font-weight:normal;">Подписки 10</b></a>
+        </div>
+
+        <div class = "set-user-div">
+          <button class = "button-opt-user-div">Поделиться</button>
+          <button class = "button-opt-user-div">Изменить профиль</button>
+        </div>
+
+
+    </div>
+
+
+      <div class = "feed-tab"> 
+        <button id = "1" onclick = "setact(this)" class = "button-feed-tab" href= ""> <img class = "image-feed-tab" style = "height:30px; width: 30px;" src="{% static 'images/publication.png' %}"> </button>
+        <button id = "2" onclick = "setact(this)" class = "button-feed-tab" href= ""><img class = "image-feed-tab" style = "height:38px; width: 38px;" src="{% static 'images/like.png' %}"></button>
+        <button id = "3" onclick = "setact(this)" class = "button-feed-tab" href= ""><img class = "image-feed-tab " style = "height:30px; width: 30px;" src="{% static 'images/bookmark.png' %}"></button>
+      </div>
+
+
+
+
+    
+
+    </body>
+
+
+
+
+
+</html>
