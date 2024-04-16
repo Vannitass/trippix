@@ -166,13 +166,15 @@ a{
 
 .feed-tab{
 	margin-top:100px;
-	margin-right:200px;
-	margin-left:200px;
+/*	margin-right:200px;*/
+/*	margin-left:200px;*/
+	margin-bottom:30px;
 	border-bottom:  1px solid #E1E1E1;
-	    flex-direction: row;
+	flex-direction: row;
     justify-content: flex-start;
     justify-content: center;
     text-align: center;
+    
 }
 
 /*
@@ -186,9 +188,13 @@ a{
 .button-feed-tab{
 	border:none;
 	width:200px;
+	height:60px;
 /*	border-bottom:  1px solid black;*/
 	margin-left:100px;
 	margin-right:100px;
+	background-color: #f2f2f2;
+
+
 }
 
 
