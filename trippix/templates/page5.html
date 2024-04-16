@@ -51,16 +51,15 @@
 <!--    <div class = "bar-to-add-image"> -->
 <!--      <div class ="card-add-image">-->
         <div class="bar-to-add-image">
-    <div class="card-add-image">
-        <form method="post" enctype="multipart/form-data">
-            <input type="file" name="image">
+             <div class="card-add-image">
+                 <form method="post" enctype="multipart/form-data">
+                    <input type="file" name="image">
 
-        </form>
-    </div>
-</div>
+                 </form>
+            </div>
 
 
-      </div>
+
         <form method="POST" action="{% url 'add' %}">
         {% csrf_token %}
       <div class = "div-all-input">
