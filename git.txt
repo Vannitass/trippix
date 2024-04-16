@@ -1,0 +1,6 @@
+git pull https://github.com/Vannitass/trippix.git
+git push https://github.com/Vannitass/trippix.git
+git add .
+git commit -m "  "
+git status
+git log
