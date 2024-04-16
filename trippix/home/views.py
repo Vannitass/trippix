@@ -100,3 +100,7 @@ def userpage(request):
     return render(request, 'page4.html', {'username': username})
     # else:
     #     return HttpResponse('Unauthorized', status=401)
+
+@login_required
+def add(request):
+    return render(request, 'page5.html')

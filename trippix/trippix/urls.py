@@ -26,6 +26,7 @@ urlpatterns = [
     re_path('login/', views.entry, name='login'),
     re_path('register/', views.register, name='register'),
     re_path('userpage/', views.userpage, name='userpage'),
+    re_path('add/', views.add, name='add'),
     # path('logout/', views.user_logout, name='logout'),
 ]
 
