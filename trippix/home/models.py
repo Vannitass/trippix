@@ -21,6 +21,7 @@ class CustomUserManager(BaseUserManager):
             password=password,
         )
         user.is_admin = True
+        user.is_staff = True  # Установка is_staff в True для суперпользователя
         user.save(using=self._db)
         return user
 
@@ -30,6 +31,7 @@ class User(AbstractBaseUser):
     logging = models.CharField(max_length=35, unique=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)  # Добавленный атрибут is_staff
 
     objects = CustomUserManager()
 
@@ -45,6 +47,13 @@ class User(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
+    def delete(self, *args, **kwargs):
+        # Проверяем, существует ли пользователь
+        if self.pk:
+            # Удаляем все посты, связанные с этим пользователем
+            Post.objects.filter(author=self).delete()
+        # Вызываем стандартный метод delete
+        return super().delete(*args, **kwargs)
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -54,5 +63,5 @@ class Post(models.Model):
     photo = models.ImageField(upload_to='images/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f'Post by {self.author.username}'
+    # def __str__(self):
+    #     return f'Post by {self.author.username}'
