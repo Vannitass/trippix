@@ -47,22 +47,33 @@
     </div>
 
 
-    <div class = "bar-to-add-image"> 
-      <div class ="card-add-image">
+
+<!--    <div class = "bar-to-add-image"> -->
+<!--      <div class ="card-add-image">-->
+        <div class="bar-to-add-image">
+    <div class="card-add-image">
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="image">
+
+        </form>
+    </div>
+</div>
+
 
       </div>
-
+        <form method="POST" action="{% url 'add' %}">
+        {% csrf_token %}
       <div class = "div-all-input">
         <div class = "input-div">
-        <input  class="input-term input-term-title" placeholder="Title">
+        <input  class="input-term input-term-title" placeholder="Title" id="title" name="title" required>
       </div>
 
       <div class = "input-div">
-        <textarea class="input-term input-term-description" placeholder="Description"></textarea>
+        <textarea class="input-term input-term-description" placeholder="Description" id="descriptor" name="descriptor" required></textarea>
       </div>
 
       <div class = "input-div">
-        <textarea class="input-term input-term-tegs" placeholder="Add tegs"></textarea>
+        <textarea class="input-term input-term-tegs" placeholder="Add tegs" id="tegs" name="tegs" required></textarea>
       </div>
 
 
@@ -73,7 +84,7 @@
       </div>
 
     </div>
-
+    </form>
 
 
     </body>

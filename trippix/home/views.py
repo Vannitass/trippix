@@ -6,6 +6,7 @@ from .forms import RegistrationForm
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import ensure_csrf_cookie
+
 @ensure_csrf_cookie
 def user_logout(request):
     """
@@ -101,9 +102,25 @@ def userpage(request):
     # else:
     #     return HttpResponse('Unauthorized', status=401)
 
+
+
 @login_required
 def add(request):
     if request.method == 'POST':
-        content = request.POST.get('login')
-        photo = request.POST.get('password')
+        title = request.POST.get('title')
+        descriptor = request.POST.get('descriptor')
+        tags = request.POST.get('tags')
+
+        # Обработка загрузки изображения
+        if request.FILES.get('image'):
+            image_file = request.FILES['image']
+            # Создаем экземпляр модели Post и сохраняем изображение
+            post = Post(title=title, descriptor=descriptor, tags=tags, photo=image_file, author=request.user)
+            post.save()
+        else:
+            # Если изображение не было загружено, сохраняем только текстовые данные
+            post = Post(title=title, descriptor=descriptor, tags=tags, author=request.user)
+            post.save()
+
+        return redirect('home')  # Перенаправление на страницу успешного добавления
     return render(request, 'page5.html')
