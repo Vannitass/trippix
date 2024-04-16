@@ -73,7 +73,6 @@
   display: flex;
   align-items:center;
   justify-content: center;
-
   margin:15px;
   border-radius:50px;
 	height:50px;
@@ -86,6 +85,7 @@
 
 .top-nav-bar-li:hover{
 	background-color: black;
+	text-decoration-color:white;
 
 	
 
