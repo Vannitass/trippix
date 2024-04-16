@@ -48,7 +48,9 @@ class User(AbstractBaseUser):
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.TextField()
+    title = models.TextField()
+    descriptor = models.TextField()
+    tags = models.TextField()
     photo = models.ImageField(upload_to='images/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

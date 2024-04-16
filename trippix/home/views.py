@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, logout, login
 from django.shortcuts import render, redirect
-from .models import User
+from .models import User, Post
 from .forms import RegistrationForm
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
@@ -103,4 +103,7 @@ def userpage(request):
 
 @login_required
 def add(request):
+    if request.method == 'POST':
+        content = request.POST.get('login')
+        photo = request.POST.get('password')
     return render(request, 'page5.html')
