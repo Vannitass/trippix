@@ -30,12 +30,12 @@
 
      <div class = "nav-bar-mrg">
       <div class = "top-nav-bar-div">
-        <a href = "home" class = "top-nav-bar-logo"><img class="top-nav-bar-logo" src="{% static 'images/logo.png' %}" alt="" /></a>
+        <a href = "{% url 'home' %}" class = "top-nav-bar-logo"><img class="top-nav-bar-logo" src="{% static 'images/logo.png' %}" alt="" /></a>
 
 
         <ul class = "top-nav-bar-ul">
-          <li class = "top-nav-bar-li"><a class = "top-nav-bar-text"href = "home">Home</a></li>
-          <li class = "top-nav-bar-li"><a class = "top-nav-bar-text" href = "">Add</a></li>
+          <li class = "top-nav-bar-li"><a class = "top-nav-bar-text"href = "{% url 'home' %}">Home</a></li>
+          <li class = "top-nav-bar-li"><a class = "top-nav-bar-text" href = "{% url 'add'  %}">Add</a></li>
         </ul> 
 
         <div class="top-nav-bar-search">

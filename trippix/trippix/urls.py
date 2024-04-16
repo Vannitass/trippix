@@ -21,7 +21,7 @@ from home import views
 
 urlpatterns = [
     # path('home/', views.index, name='home'),
-    re_path(r'home/', views.index, name='home'),
+    path(r'home/', views.index, name='home'),
     re_path('admin/', admin.site.urls),
     re_path('login/', views.entry, name='login'),
     re_path('register/', views.register, name='register'),
