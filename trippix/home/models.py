@@ -57,11 +57,11 @@ class User(AbstractBaseUser):
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.TextField()
-    descriptor = models.TextField()
-    tags = models.TextField()
-    photo = models.ImageField(upload_to='images/', null=True, blank=True)
+    title = models.TextField(blank=True)
+    descriptor = models.TextField(blank=True)
+    tags = models.TextField(blank=True)
+    photo = models.ImageField(upload_to='static/images/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    # def __str__(self):
-    #     return f'Post by {self.author.username}'
+    def __str__(self):
+        return f'Post by {self.author.username}'
