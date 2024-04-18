@@ -1,0 +1,126 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+	margin: 0; 
+	padding: 0; 
+	background-color: #f2f2f2;
+	font-family: 'Open Sans', sans-serif;
+	box-sizing: border-box;
+  
+  
+}
+a{
+	text-decoration: none;
+}
+
+
+
+.post-box-position{
+	text-align: center;
+	display: flex;
+/*    flex-direction: column;*/
+    justify-content: flex-start;
+    justify-content: center
+}
+
+.post-box{
+	box-shadow: 4px 4px 48px rgba(0, 0, 0, 0.10);
+/*    background-color: red;*/
+    height:700px;
+    width:70%;
+    border-radius:20px;
+    transition: 0.7s;
+    display: flex;
+    text-align: center;
+    padding: 20px;
+}	
+
+
+
+
+
+/*.post-box:hover{
+	width:70%;
+}*/
+
+
+
+.post-box-inform{
+	display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+
+.post-image{
+
+
+	border-radius:20px;
+
+
+}
+
+.post-box-about{
+	margin-left:20px;
+	border-radius:20px;
+	width: 100%;
+
+
+}
+
+.post-box-place-text{
+/*	background-color: green;*/
+	padding:30px;
+	height:40%;
+	text-align:left;
+}
+
+
+.post-box-user-image{
+	width:50px;
+	height:50px;
+	border-radius: 100%; 
+
+}
+
+
+.post-box-user-text{
+	margin:0;
+	color:black;
+}
+
+
+
+.post-box-user-subs{
+	font-weight: lighter;
+
+}
+
+
+.post-box-text-leveler{
+	display: flex;
+}
+
+
+
+.post-box-title{
+/*	width:50%;*/
+	word-wrap:break-word;
+	font-weight:bold;
+	margin-bottom:10px;
+
+}
+
+.post-box-descript{
+/*	width:50%;*/
+	word-wrap:break-word;
+	margin-bottom: 20px;
+}
+
+
+
+.post-box-user{
+	margin-left:10px;
+    justify-content: flex-start;
+
+}
