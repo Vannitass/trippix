@@ -6,6 +6,7 @@ from .forms import RegistrationForm
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import ensure_csrf_cookie
+from PIL import Image
 
 @ensure_csrf_cookie
 def user_logout(request):
@@ -109,18 +110,23 @@ def add(request):
     if request.method == 'POST':
         title = request.POST.get('title')
         descriptor = request.POST.get('descriptor')
-        tags = request.POST.get('tags')
+        tegs = request.POST.get('tegs')
 
         # Обработка загрузки изображения
-        if request.FILES.get('image'):
+        if request.FILES.get('image'): #не работает проверка исправить !!!!
             image_file = request.FILES['image']
             # Создаем экземпляр модели Post и сохраняем изображение
-            post = Post(title=title, descriptor=descriptor, tags=tags, photo=image_file, author=request.user)
+            post = Post(title=title, descriptor=descriptor, tags=tegs, photo=image_file, author=request.user)
             post.save()
+            # post.photo.save(image_file.name, image_file, save=True)  # Сохраняем путь к файлу изображения в модели
+            print(post.__dict__, '1') # вывод в консоль введеные данные post для проверки
+            return redirect('home')# Перенаправление на страницу успешного добавления
         else:
             # Если изображение не было загружено, сохраняем только текстовые данные
-            post = Post(title=title, descriptor=descriptor, tags=tags, author=request.user)
+            post = Post(title=title, descriptor=descriptor, tags=tegs, author=request.user)
             post.save()
+            print(post.__dict__, '0')# вывод в консоль введеные данные post для проверки
+            return redirect('home')# Перенаправление на страницу успешного добавления
 
-        return redirect('home')  # Перенаправление на страницу успешного добавления
+        # return redirect('home')  # Перенаправление на страницу успешного добавления
     return render(request, 'page5.html')
