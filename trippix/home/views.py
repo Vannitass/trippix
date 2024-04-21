@@ -94,15 +94,8 @@ def index(request):
 
 @login_required
 def userpage(request):
-    # print(request.user.is_authenticated)
-
-    # if request.user.is_authenticated:
-    # username = "Егор"
     username = request.user.logging
-    print(username)
     return render(request, 'page4.html', {'username': username})
-    # else:
-    #     return HttpResponse('Unauthorized', status=401)
 
 
 
@@ -112,9 +105,9 @@ def add(request):
         title = request.POST.get('title')
         descriptor = request.POST.get('descriptor')
         tegs = request.POST.get('tegs')
-
+        print(request.FILES)
         # Обработка загрузки изображения
-        if request.FILES.get('image'): #не работает проверка исправить !!!!
+        if request.FILES.get('image'):
             image_file = request.FILES['image']
             # Создаем экземпляр модели Post и сохраняем изображение
             post = Post(title=title, descriptor=descriptor, tags=tegs, photo=image_file, author=request.user)
