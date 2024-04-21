@@ -98,7 +98,8 @@ def userpage(request):
 
     # if request.user.is_authenticated:
     # username = "Егор"
-    username = request.session.get("username")
+    username = request.user.logging
+    print(username)
     return render(request, 'page4.html', {'username': username})
     # else:
     #     return HttpResponse('Unauthorized', status=401)
