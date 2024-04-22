@@ -16,6 +16,7 @@
   <script>
 
     function setact( elem ){
+
     var btnEl = document.querySelectorAll('.button-feed-tab');
     for (var i = 0; i < btnEl.length; i++) {
         btnEl[i].classList.remove('button-feed-tab-swap');
@@ -33,9 +34,9 @@
         <a href = "{% url 'home' %}" class = "top-nav-bar-logo"><img class="top-nav-bar-logo" src="{% static 'images/logo.png' %}" alt="" /></a>
 
 
-        <ul class = "top-nav-bar-ul">
-          <li class = "top-nav-bar-li"><a class = "top-nav-bar-text"href = "{% url 'home' %}">Home</a></li>
-          <li class = "top-nav-bar-li"><a class = "top-nav-bar-text" href = "{% url 'add'  %}">Add</a></li>
+         <ul class = "top-nav-bar-ul">
+          <a class = "top-nav-bar-text"href = "{% url 'home' %}"><li class = "top-nav-bar-li">Home</li></a>
+          <a class = "top-nav-bar-text" href = "{% url 'add'  %}"><li class = "top-nav-bar-li">Add</li></a>
         </ul> 
 
         <div class="top-nav-bar-search">
@@ -84,10 +85,17 @@
     </div>
 
 
+<!--       <div class = "feed-tab"> 
+        <button id = "1" onclick = "setact(this)" class = "button-feed-tab" href= ""> <img class = "image-feed-tab" style = "height:25px; width: 25px;" src="{% static 'images/publication.png' %}"> </button>
+        <button id = "2" onclick = "setact(this)" class = "button-feed-tab" href= ""><img class = "image-feed-tab" style = "height:25px; width: 25px;" src="{% static 'images/like.png' %}"></button>
+        <button id = "3" onclick = "setact(this)" class = "button-feed-tab" href= ""><img class = "image-feed-tab " style = "height:25px; width: 25px;" src="{% static 'images/bookmark.png' %}"></button>
+      </div> -->
+
+
       <div class = "feed-tab"> 
-        <button id = "1" onclick = "setact(this)" class = "button-feed-tab" href= ""> <img class = "image-feed-tab" style = "height:30px; width: 30px;" src="{% static 'images/publication.png' %}"> </button>
-        <button id = "2" onclick = "setact(this)" class = "button-feed-tab" href= ""><img class = "image-feed-tab" style = "height:38px; width: 38px;" src="{% static 'images/like.png' %}"></button>
-        <button id = "3" onclick = "setact(this)" class = "button-feed-tab" href= ""><img class = "image-feed-tab " style = "height:30px; width: 30px;" src="{% static 'images/bookmark.png' %}"></button>
+        <button id = "1" onclick = "setact(this)" class = "button-feed-tab" href= ""> <img class = "image-feed-tab"  src="{% static 'images/publication.png' %}"> </button>
+        <button id = "2" onclick = "setact(this)" class = "button-feed-tab" href= ""><img class = "image-feed-tab" src="{% static 'images/like.png' %}"></button>
+        <button id = "3" onclick = "setact(this)" class = "button-feed-tab" href= ""><img class = "image-feed-tab " src="{% static 'images/bookmark.png' %}"></button>
       </div>
 
 

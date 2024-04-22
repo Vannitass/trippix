@@ -22,9 +22,10 @@
 
 
         <ul class = "top-nav-bar-ul">
-          <li class = "top-nav-bar-li"><a class = "top-nav-bar-text"href = "{% url 'home' %}">Home</a></li>
-          <li class = "top-nav-bar-li"><a class = "top-nav-bar-text" href = "{% url 'add'  %}">Add</a></li>
+          <a class = "top-nav-bar-text"href = "{% url 'home' %}"><li class = "top-nav-bar-li">Home</li></a>
+          <a class = "top-nav-bar-text" href = "{% url 'add'  %}"><li class = "top-nav-bar-li">Add</li></a>
         </ul> 
+
 
         <div class="top-nav-bar-search">
           <input type="search" class="top-nav-bar-search-term" placeholder="Search">
