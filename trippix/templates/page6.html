@@ -19,9 +19,9 @@
         <a href = "" class = "top-nav-bar-logo"><img class="top-nav-bar-logo" src="images/logo.png" alt="" /></a>
 
 
-        <ul class = "top-nav-bar-ul">
-          <li class = "top-nav-bar-li"><a class = "top-nav-bar-text"href = "">Home</a></li>
-          <li class = "top-nav-bar-li"><a class = "top-nav-bar-text" href = "">Add</a></li>
+         <ul class = "top-nav-bar-ul">
+          <a class = "top-nav-bar-text"href = "{% url 'home' %}"><li class = "top-nav-bar-li">Home</li></a>
+          <a class = "top-nav-bar-text" href = "{% url 'add'  %}"><li class = "top-nav-bar-li">Add</li></a>
         </ul> 
 
         <div class="top-nav-bar-search">

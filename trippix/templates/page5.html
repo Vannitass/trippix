@@ -16,14 +16,14 @@
 
   <body>
 
-     <div class = "nav-bar-mrg">
+    <div class = "nav-bar-mrg">
       <div class = "top-nav-bar-div">
         <a href = "{% url 'home' %}" class = "top-nav-bar-logo"><img class="top-nav-bar-logo" src="{% static 'images/logo.png' %}" alt="" /></a>
 
 
-        <ul class = "top-nav-bar-ul">
-          <li class = "top-nav-bar-li"><a class = "top-nav-bar-text"href = "{% url 'home' %}">Home</a></li>
-          <li class = "top-nav-bar-li"><a class = "top-nav-bar-text" href = "{% url 'add'  %}">Add</a></li>
+         <ul class = "top-nav-bar-ul">
+          <a class = "top-nav-bar-text"href = "{% url 'home' %}"><li class = "top-nav-bar-li">Home</li></a>
+          <a class = "top-nav-bar-text" href = "{% url 'add'  %}"><li class = "top-nav-bar-li">Add</li></a>
         </ul> 
 
 
@@ -49,42 +49,37 @@
 
 
 
-<!--    <div class = "bar-to-add-image"> -->
-<!--      <div class ="card-add-image">-->
-        <div class="bar-to-add-image">
-             <div class="card-add-image">
-                 <form method="POST" action="{% url 'add' %}" enctype="multipart/form-data">
-                     {% csrf_token %}
-                    <input type="file" name="image">
-                 </form>
+
+
+    <form method="POST" action="{% url 'add' %}" enctype="multipart/form-data" class="bar-to-add-image">
+      {% csrf_token %}
+            <div class="card-add-image">
+                  <input type="file" name="image"> 
+                  <!-- <button type="file" class="add-button" >Publish</button> -->
             </div>
 
 
 
-        <form method="POST" action="{% url 'add' %}">
-        {% csrf_token %}
-      <div class = "div-all-input">
-        <div class = "input-div">
-        <input  class="input-term input-term-title" placeholder="Title" id="title" name="title" required>
-      </div>
+            <div class = "div-all-input">
+                <div class = "input-div">
+                  <input  class="input-term input-term-title" placeholder="Title" id="title" name="title" required>
+                </div>
 
-      <div class = "input-div">
-        <textarea class="input-term input-term-description" placeholder="Description" id="descriptor" name="descriptor" required></textarea>
-      </div>
+                <div class = "input-div">
+                  <textarea class="input-term input-term-description" placeholder="Description" id="descriptor" name="descriptor" required></textarea>
+                </div>
 
-      <div class = "input-div">
-        <textarea class="input-term input-term-tegs" placeholder="Add tegs" id="tegs" name="tegs" required></textarea>
-      </div>
+                <div class = "input-div">
+                  <textarea class="input-term input-term-tegs" placeholder="Add tegs" id="tegs" name="tegs" required></textarea>
+                </div>
 
-
-      <div class = "input-div input-div-button-palce">
-        <button type="submit" class="add-button" >Publish</button>
-      </div>
-
-      </div>
-
-    </div>
+                <div class = "input-div input-div-button-palce">
+                  <button type="submit" class="add-button" >Publish</button>
+                </div>
+            </div>
+            
     </form>
+
 
 
     </body>

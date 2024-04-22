@@ -24,6 +24,7 @@
   margin:0;
   padding: 0;
 
+
 }
 
 
@@ -78,14 +79,15 @@
 	height:50px;
 	width:70px;
 	cursor:pointer;
-/*	background-color: grey;*/
+
+
 	transition:0.4s;
 
 }
 
 .top-nav-bar-li:hover{
-	background-color: black;
-	text-decoration-color:white;
+	background-color: #303030;
+	color:white;
 
 	
 
@@ -96,8 +98,6 @@
 
 
 }
-
-
 
 .top-nav-bar-text{
 	color: black;
