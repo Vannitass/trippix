@@ -92,21 +92,80 @@
       </div> -->
 
 
-      <div class = "feed-tab"> 
-        <button id = "1" onclick = "setact(this)" class = "button-feed-tab" href= ""> <img class = "image-feed-tab"  src="{% static 'images/publication.png' %}"> </button>
-        <button id = "2" onclick = "setact(this)" class = "button-feed-tab" href= ""><img class = "image-feed-tab" src="{% static 'images/like.png' %}"></button>
-        <button id = "3" onclick = "setact(this)" class = "button-feed-tab" href= ""><img class = "image-feed-tab " src="{% static 'images/bookmark.png' %}"></button>
-      </div>
+<!--      <div class = "feed-tab"> -->
+<!--        <button id = "1" onclick = "setact(this)" class = "button-feed-tab" href= ""> <img class = "image-feed-tab"  src="{% static 'images/publication.png' %}"> </button>-->
+<!--          <div class="table-div">-->
+<!--            {%  for post in user_posts  %}-->
+<!--                {% if forloop.counter0|divisibleby:4 and not forloop.first %}-->
+<!--                    </div><div class="table-div">-->
+<!--                {% endif %}-->
+<!--                <a href = "" style = "text-decoration:none;">-->
+<!--                <div class="card">-->
+<!--                    <img class="card-image" src="{{ post.photo }}" alt="" />-->
+<!--                <div class="card-about">-->
+<!--                    <img class="card-image-user" src="{{ post.card_image_user }}" alt="" />-->
+<!--                    <b class="card-text">{{ post.title }}</b>-->
 
+<!--                </div>-->
+<!--                </div>-->
+<!--            </a>-->
+<!--          {% endfor %}-->
+<!--        </div>-->
+<!--        <button id = "2" onclick = "setact(this)" class = "button-feed-tab" href= ""><img class = "image-feed-tab" src="{% static 'images/like.png' %}"></button>-->
+<!--        <button id = "3" onclick = "setact(this)" class = "button-feed-tab" href= ""><img class = "image-feed-tab " src="{% static 'images/bookmark.png' %}"></button>-->
+<!--      </div>-->
 
+<div class="feed-tab">
+     <button id = "1" onclick = "setact(this)" class = "button-feed-tab" href= ""> <img class = "image-feed-tab"  src="{% static 'images/publication.png' %}"> </button>
+    <button id = "2" onclick = "setact(this)" class = "button-feed-tab" href= ""><img class = "image-feed-tab" src="{% static 'images/like.png' %}"></button>
+    <button id = "3" onclick = "setact(this)" class = "button-feed-tab" href= ""><img class = "image-feed-tab " src="{% static 'images/bookmark.png' %}"></button>
+</div>
 
+<div id="content1" class="content">
+    <div class="table-div">
+            {%  for post in user_posts  %}
+                {% if forloop.counter0|divisibleby:4 and not forloop.first %}
+                    </div><div class="table-div">
+                {% endif %}
+                <a href = "" style = "text-decoration:none;">
+                <div class="card">
+                    {% with fixed_url=post.photo.url|slice:'1:' %}
+                    <img class="card-image" src="{{ fixed_url }}" alt="" />
+                    {% endwith %}
+                <div class="card-about">
+                    <img class="card-image-user" src="{{ post.card_image_user }}" alt="" />
+                    <b class="card-text">{{ post.title }}</b>
 
-    
+                </div>
+                </div>
+            </a>
+          {% endfor %}
+        </div>
+</div>
+<div id="content2" class="content" style="display:none;">Содержимое для кнопки 2</div>
+<div id="content3" class="content" style="display:none;">Содержимое для кнопки 3</div>
+
+<script>
+function setact(btn) {
+    // Получаем id кнопки
+    var btnId = btn.id;
+
+    // Получаем все элементы с классом "content"
+    var contents = document.getElementsByClassName("content");
+
+    // Проходим по всем элементам с классом "content"
+    for (var i = 0; i < contents.length; i++) {
+        // Скрываем все элементы с классом "content"
+        contents[i].style.display = "none";
+    }
+
+    // Отображаем нужный контент в зависимости от id кнопки
+    document.getElementById("content" + btnId).style.display = "block";
+}
+</script>
+
 
     </body>
-
-
-
 
 
 </html>

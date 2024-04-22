@@ -60,7 +60,7 @@ class Post(models.Model):
     title = models.TextField(blank=True)
     descriptor = models.TextField(blank=True)
     tags = models.TextField(blank=True)
-    photo = models.ImageField(upload_to='static/images/', null=True, blank=True)
+    photo = models.ImageField(upload_to='Post_images/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
