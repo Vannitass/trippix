@@ -54,7 +54,10 @@
     <form method="POST" action="{% url 'add' %}" enctype="multipart/form-data" class="bar-to-add-image">
       {% csrf_token %}
             <div class="card-add-image">
-                  <input type="file" name="image"> 
+                  <label for="file-upload" class="custom-file-upload">
+                      <i class="fas fa-cloud-upload-alt"></i> Выберите файл
+                  </label>
+                  <input type="file" id="file-upload" name="image" style="display: none;">
                   <!-- <button type="file" class="add-button" >Publish</button> -->
             </div>
 
