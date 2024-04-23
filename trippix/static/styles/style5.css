@@ -1,16 +1,16 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 body {
-	margin: 0; 
-	padding: 0; 
-	background-color: #f2f2f2;
-	font-family: 'Open Sans', sans-serif;
-	box-sizing: border-box
+  margin: 0; 
+  padding: 0; 
+  background-color: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+  box-sizing: border-box
   
   
 }
 a{
-	text-decoration: none;
+  text-decoration: none;
 }
 
 
@@ -20,6 +20,7 @@ a{
   display: flex;
   align-items:center;
   justify-content: center;
+  text-align: center;
 
 
 
@@ -27,52 +28,51 @@ a{
 
 
 .card-add-image{
-	background-color:#AFAFAF;
-	border-radius:30px;
-	height: 500px;
-	width: 400px;
-/*	margin-left:200px;
-	margin-right:50px;*/
+  background-color:#AFAFAF;
+  border-radius:30px;
+  height: 500px;
+  width: 400px;
+  text-align: center;
 
 }
 
 
 .input-div{
-	margin:30px;
+  margin:30px;
 }
 
 .input-div-button-palce{
- 	display: flex;
-	justify-content: right;
+  display: flex;
+  justify-content: right;
 }
 
 .input-term{
   border: 2px solid white;
   box-shadow: rgba(0, 0, 0, 0.15) 0 4px 15px;
   padding: 5px;
-	resize: none;
+  resize: none;
   outline: none;
   font-weight: bold;
   font-family: 'Open Sans', sans-serif;
   border-color: white;
-  border-radius:10px; 	
+  border-radius:10px;   
 }
 
 
 .input-term-title{
-	width:920px;
-	height:40px;
-	font-size:18px;
+  width:920px;
+  height:40px;
+  font-size:18px;
 }
 
 .input-term-description{
-	width:920px;
-	height:200px;
+  width:920px;
+  height:200px;
 }
 
 .input-term-tegs{
-	width:920px;
-	height:50px;
+  width:920px;
+  height:50px;
 }
 
 
@@ -128,14 +128,17 @@ a{
 .div-all-input{
   padding-top:100px;
 
+
+}
+
+.custom-file-upload{
+  display: inline-block;
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+  justify-content:center; 
+  margin-top:50%;
+  
 }
 
 
-
-.custom-file-upload {
-    display: inline-block;
-    padding: 10px 20px;
-    cursor: pointer;
-    border: 2px solid #ccc;
-    background: #f1f1f1;
-}

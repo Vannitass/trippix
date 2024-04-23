@@ -128,12 +128,7 @@ def add(request):
             # post.photo.save(image_file.name, image_file, save=True)  # Сохраняем путь к файлу изображения в модели
             print(post.__dict__, '1')  # вывод в консоль введеные данные post для проверки
             return redirect('home')  # Перенаправление на страницу успешного добавления
-        else:
-            # Если изображение не было загружено, сохраняем только текстовые данные
-            post = Post(title=title, descriptor=descriptor, tags=tegs, author=request.user)
-            post.save()
-            print(post.__dict__, '0')  # вывод в консоль введеные данные post для проверки
-            return redirect('home')  # Перенаправление на страницу успешного добавления
+
 
         # return redirect('home')  # Перенаправление на страницу успешного добавления
     return render(request, 'page5.html')
