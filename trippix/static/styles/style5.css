@@ -136,7 +136,8 @@ a{
   display: flex;
   flex-flow: column;
   text-align: center;
-  justify-content:center;
+  justify-content:center; 
+  margin-top:50%;
   
 }
 
