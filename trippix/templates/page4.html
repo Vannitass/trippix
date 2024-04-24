@@ -3,7 +3,6 @@
 <html>
 
   <head>
-
     <meta charset ="UTF-8">
     <title>Trippix home page </title>
     <link rel="stylesheet" type="text/css" href="{% static 'styles/style4.css' %}">
@@ -115,9 +114,9 @@
                 {% endif %}
                 <a href = "" style = "text-decoration:none;">
                 <div class="card">
-                    {% with fixed_url=post.photo.url|slice:'1:' %}
-                    <img class="card-image" src="{{ fixed_url }}" alt="" />
-                    {% endwith %}
+<!--                        {% with fixed_url=post.photo.url|slice:'1:' %}-->
+                    <img class="card-image" src="{{ post.photo.url }}" alt="" />
+<!--                        {% endwith %}-->
                 <div class="card-about">
                     <img class="card-image-user" src="{{ post.card_image_user }}" alt="" />
                     <b class="card-text">{{ post.title }}</b>
