@@ -22,16 +22,13 @@ from home import views
 
 
 urlpatterns = [
-    # path('home/', views.index, name='home'),
     path(r'home/', views.index, name='home'),
     re_path('admin/', admin.site.urls),
     re_path('login/', views.entry, name='login'),
     re_path('register/', views.register, name='register'),
     re_path('userpage/', views.userpage, name='userpage'),
     re_path('add/', views.add, name='add'),
-    re_path('post/', views.post, name='post')
-
-    # path('logout/', views.user_logout, name='logout'),
+    path('post/<int:post_id>/', views.post, name='post')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -112,11 +112,9 @@
                 {% if forloop.counter0|divisibleby:4 and not forloop.first %}
                     </div><div class="table-div">
                 {% endif %}
-                <a href = "" style = "text-decoration:none;">
+                <a href = "{% url 'post' post_id=post.id %}" style = "text-decoration:none;">
                 <div class="card">
-<!--                        {% with fixed_url=post.photo.url|slice:'1:' %}-->
                     <img class="card-image" src="{{ post.photo.url }}" alt="" />
-<!--                        {% endwith %}-->
                 <div class="card-about">
                     <img class="card-image-user" src="{{ post.card_image_user }}" alt="" />
                     <b class="card-text">{{ post.title }}</b>

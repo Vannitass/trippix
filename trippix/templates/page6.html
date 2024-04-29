@@ -48,24 +48,22 @@
 
     <div  class = "post-box-position"> 
       <div class = "post-box">
-        <div class = "post-box-inform" > <img class="post-image" src="{% static 'images/image.jpg' %}" alt=""/></div>
+        <div class = "post-box-inform" > <img class="post-image" src="{{ post_html.photo.url }}" alt=""/></div>
         <div class = "post-box-about">
           <div class = "post-box-place-text" >
             
             <div class = "post-box-title">
-              <font size=5px>Canadian Rockies, Rocky Mountains, Banff National Park, Emerald Lake, Forests, Mountain Photography, Landscape Photography, Green Wall Art.</font>
+              <font size=5px>{{ post_html.title }}</font>
             </div>
 
             <div class = "post-box-descript">
               <font size=3px> 
-                
-                Few mountain ranges are more massive and majestic than the Canadian Rockies. This original photograph of Mt. Burgess reigning over Emerald Lake and its surrounding forests, taken in 2016, exemplifies the picture-perfect beauty of Banff National Park. Joni Canadian Rockies, Rocky Mountains, Banff National Park, Emerald Lake, Forests, Mountain Photography, Landscape Photography, Green Wall Art © The Photo Impression, 2017. Unauthorized use and/or duplication of this material without express.
-
+                {{ post_html.descriptor }}
               </font>
               <br>
               <br>
               <font size=3px>
-                #CanadianRockies #RockyMountains #MountainPhotography #EmeraldLake
+                {{ post_html.tags }}
               </font>
             </div>
 
@@ -75,7 +73,7 @@
              <a  href = ""><div class = "post-box-text-leveler">
               <img class="post-box-user-image"  src="{% static 'images/user-image.jpg' %}" alt="" />
                 <div class = "post-box-user">
-                  <h3 class = "post-box-user-text">g10bus</h3> 
+                  <h3 class = "post-box-user-text">{{ post_html.author.logging }}</h3>
                   <h5 class = "post-box-user-text post-box-user-subs">1000 subscribers</h5> 
                   
                 </div>

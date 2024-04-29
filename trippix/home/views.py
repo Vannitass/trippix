@@ -8,7 +8,6 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import ensure_csrf_cookie
 
 
-
 @ensure_csrf_cookie
 def user_logout(request):
     """
@@ -129,21 +128,39 @@ def add(request):
             print(post.__dict__, '1')  # вывод в консоль введеные данные post для проверки
             return redirect('home')  # Перенаправление на страницу успешного добавления
 
-
         # return redirect('home')  # Перенаправление на страницу успешного добавления
     return render(request, 'page5.html')
 
 
+@login_required
+def delete_post(request, post_id):
+    post = Post.objects.get(id=post_id)
+    if request.user == post.author:
+        post.delete()
+        return redirect('home')  # Перенаправление на главную страницу или другую после удаления
+    else:
+        return redirect('home')  # Обработка случая, когда пользователь пытается удалить чужой пост
+
 
 @login_required
-def post(request):
-    # Получаем текущего пользователя
-    user = request.user
-    # Получаем имя пользователя
-    username = user.logging
-    # Получаем все посты, отсортированные по дате создания
-    user_posts = Post.objects.filter(author=user).order_by('created_at')
+def like_post(request, post_id):
+    post = Post.objects.get(id=post_id)
+    if request.method == 'POST':
+        # Проверка, что пользователь не является автором поста
+        if request.user != post.author:
+            # Пример обновления количества лайков и сохранения изменений в базе данных
+            post.like += 1  # Увеличиваем количество лайков на 1
+            post.save()  # Сохраняем изменения в базе данных
+            return redirect('home')  # Перенаправление на главную страницу или другую после лайка
+        else:
+            # Обработка случая, когда автор поста пытается лайкнуть свой пост
+            return redirect('home')  # Например, перенаправить на главную страницу
+    else:
+        # Обработка случая, когда запрос не является методом POST
+        return redirect('home')  # Например, перенаправить на главную страницу
 
-    context = {'user_posts': user_posts, 'username': username}
 
-    return render(request, 'page6.html')
+@login_required
+def post(request, post_id):
+    post_html = Post.objects.get(id=post_id)
+    return render(request, 'page6.html', {'post_html': post_html})
