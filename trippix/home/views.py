@@ -2,10 +2,11 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, logout, login
 from django.shortcuts import render, redirect
 from .models import User, Post
-from .forms import RegistrationForm
+from .forms import RegistrationForm, SearchForm
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import ensure_csrf_cookie
+
 
 
 @ensure_csrf_cookie
@@ -72,29 +73,12 @@ def entry(request):
 
 
 def index(request):
-    products_data = [
-        {'title': 'Canadian Rockies, Rocky Mountains, Banff National Park', 'card_image': '/static/images/image.jpg',
-         'card_image_user': '/static/images/user-image.jpg'},
-        {'title': 'A Cool Guide to Japan - Tokyo, Osaka and Kyoto', 'card_image': '/static/images/image_1.jpg',
-         'card_image_user': '/static/images/user-image.jpg'},
-        {'title': 'Canadian Rockies, Rocky Mountains, Banff National Park', 'card_image': '/static/images/image_2.jpg',
-         'card_image_user': '/static/images/user-image.jpg'},
-        {'title': 'Canadian Rockies, Rocky Mountains, Banff National Park', 'card_image': '/static/images/image_3.jpg',
-         'card_image_user': '/static/images/user-image.jpg'},
-        {'title': 'Canadian Rockies, Rocky Mountains, Banff National Park', 'card_image': '/static/images/image_4.jpg',
-         'card_image_user': '/static/images/user-image.jpg'},
-        {'title': 'Canadian Rockies, Rocky Mountains, Banff National Park', 'card_image': '/static/images/image_5.jpg',
-         'card_image_user': '/static/images/user-image.jpg'},
-        {'title': 'Canadian Rockies, Rocky Mountains, Banff National Park', 'card_image': '/static/images/image_6.jpg',
-         'card_image_user': '/static/images/user-image.jpg'},
-        {'title': 'Canadian Rockies, Rocky Mountains, Banff National Park', 'card_image': '/static/images/image_7.jpg',
-         'card_image_user': '/static/images/user-image.jpg'},
-        {'title': 'Canadian Rockies, Rocky Mountains, Banff National Park', 'card_image': '/static/images/image_8.jpg',
-         'card_image_user': '/static/images/user-image.jpg'},
-    ]
-
-    # Другие данные продуктов
-    return render(request, 'page1.html', {'products_data': products_data})
+    posts = Post.objects.all()
+    form = SearchForm(request.GET or None)
+    if form.is_valid():
+        query = form.cleaned_data['query']
+        posts = Post.objects.filter(title__icontains=query)
+    return render(request, 'page1.html', {'posts': posts, 'form': form})
 
 
 @login_required
@@ -133,34 +117,30 @@ def add(request):
 
 
 @login_required
-def delete_post(request, post_id):
-    post = Post.objects.get(id=post_id)
-    if request.user == post.author:
-        post.delete()
-        return redirect('home')  # Перенаправление на главную страницу или другую после удаления
-    else:
-        return redirect('home')  # Обработка случая, когда пользователь пытается удалить чужой пост
-
-
-@login_required
-def like_post(request, post_id):
-    post = Post.objects.get(id=post_id)
-    if request.method == 'POST':
-        # Проверка, что пользователь не является автором поста
-        if request.user != post.author:
-            # Пример обновления количества лайков и сохранения изменений в базе данных
-            post.like += 1  # Увеличиваем количество лайков на 1
-            post.save()  # Сохраняем изменения в базе данных
-            return redirect('home')  # Перенаправление на главную страницу или другую после лайка
-        else:
-            # Обработка случая, когда автор поста пытается лайкнуть свой пост
-            return redirect('home')  # Например, перенаправить на главную страницу
-    else:
-        # Обработка случая, когда запрос не является методом POST
-        return redirect('home')  # Например, перенаправить на главную страницу
-
-
-@login_required
 def post(request, post_id):
-    post_html = Post.objects.get(id=post_id)
-    return render(request, 'page6.html', {'post_html': post_html})
+    if request.method == 'POST':
+        # Удаление поста
+        if 'delete' in request.POST:
+            post = Post.objects.get(id=post_id)
+            if request.user == post.author:
+                post.delete()
+                return redirect('home')  # Перенаправление на главную страницу после удаления
+            else:
+                return redirect('home')  # Обработка случая, когда пользователь пытается удалить чужой пост
+        # Лайк поста
+        elif 'like' in request.POST:
+            post = Post.objects.get(id=post_id)
+            # Проверка, что пользователь не является автором поста
+            if request.user != post.author:
+                # Пример обновления количества лайков и сохранения изменений в базе данных
+                post.like += 1  # Увеличиваем количество лайков на 1
+                post.save()  # Сохраняем изменения в базе данных
+                return redirect('home')  # Перенаправление на главную страницу после лайка
+            else:
+                # Обработка случая, когда автор поста пытается лайкнуть свой пост
+                return redirect('home')  # Например, перенаправить на главную страницу
+    else:
+        # Отображение поста
+        post_html = Post.objects.get(id=post_id)
+        return render(request, 'page6.html', {'post_html': post_html})
+

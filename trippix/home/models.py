@@ -65,4 +65,4 @@ class Post(models.Model):
     like = models.IntegerField(default=0)
 
     def __str__(self):
-        return f'Post by {self.author.username}'
+        return f'Post by {self.author.logging}'

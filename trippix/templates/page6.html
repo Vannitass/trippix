@@ -75,7 +75,23 @@
                 <div class = "post-box-user">
                   <h3 class = "post-box-user-text">{{ post_html.author.logging }}</h3>
                   <h5 class = "post-box-user-text post-box-user-subs">1000 subscribers</h5> 
-                  
+                  {% if user.is_authenticated %}
+    {% if post_html.author == user %}
+        <!-- Кнопка удаления поста -->
+        <form method="POST" action="{% url 'post' post_html.id %}">
+            {% csrf_token %}
+            <button type="submit">Удалить</button>
+        </form>
+    {% else %}
+        <!-- Кнопка лайка -->
+        <form method="POST" action="{% url 'post' post_html.id %}">
+            {% csrf_token %}
+            <button type="submit">Лайкнуть</button>
+        </form>
+    {% endif %}
+{% else %}
+    <!-- Обычное отображение поста, без возможности лайка или удаления -->
+{% endif %}
                 </div>
 
               </div></a>

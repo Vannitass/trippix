@@ -50,13 +50,13 @@
 
 
   <div class="table-div">
-    {% for product in products_data %}
+    {% for product in cards %}
         {% if forloop.counter0|divisibleby:4 and not forloop.first %}
             </div><div class="table-div">
         {% endif %}
         <a href = "" style = "text-decoration:none;">
             <div class="card">
-                <img class="card-image" src="{{ product.card_image }}" alt="" />
+                <img class="card-image" src="{{ product.photo.url }}" alt="" />
                 <div class="card-about">
                     <img class="card-image-user" src="{{ product.card_image_user }}" alt="" />
                     <b class="card-text">{{ product.title }}</b>
