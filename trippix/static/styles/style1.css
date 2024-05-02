@@ -54,10 +54,11 @@ a{
 */
 .card-image{
 	width:220px;
-	height: 300px;
+	height:300px;
 	border-radius: 20px;
 	margin-top:10px;
 	box-shadow: 4px 4px 48px rgba(0, 0, 0, 0.07);
+
 
 }
 
