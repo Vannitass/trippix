@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, logout, login
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import User, Post
-from .forms import RegistrationForm
+from .forms import RegistrationForm, SearchForm
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import ensure_csrf_cookie
@@ -73,29 +73,8 @@ def entry(request):
 
 
 def index(request):
-    products_data = [
-        {'title': 'Canadian Rockies, Rocky Mountains, Banff National Park', 'card_image': '/static/images/image.jpg',
-         'card_image_user': '/static/images/user-image.jpg'},
-        {'title': 'A Cool Guide to Japan - Tokyo, Osaka and Kyoto', 'card_image': '/static/images/image_1.jpg',
-         'card_image_user': '/static/images/user-image.jpg'},
-        {'title': 'Canadian Rockies, Rocky Mountains, Banff National Park', 'card_image': '/static/images/image_2.jpg',
-         'card_image_user': '/static/images/user-image.jpg'},
-        {'title': 'Canadian Rockies, Rocky Mountains, Banff National Park', 'card_image': '/static/images/image_3.jpg',
-         'card_image_user': '/static/images/user-image.jpg'},
-        {'title': 'Canadian Rockies, Rocky Mountains, Banff National Park', 'card_image': '/static/images/image_4.jpg',
-         'card_image_user': '/static/images/user-image.jpg'},
-        {'title': 'Canadian Rockies, Rocky Mountains, Banff National Park', 'card_image': '/static/images/image_5.jpg',
-         'card_image_user': '/static/images/user-image.jpg'},
-        {'title': 'Canadian Rockies, Rocky Mountains, Banff National Park', 'card_image': '/static/images/image_6.jpg',
-         'card_image_user': '/static/images/user-image.jpg'},
-        {'title': 'Canadian Rockies, Rocky Mountains, Banff National Park', 'card_image': '/static/images/image_7.jpg',
-         'card_image_user': '/static/images/user-image.jpg'},
-        {'title': 'Canadian Rockies, Rocky Mountains, Banff National Park', 'card_image': '/static/images/image_8.jpg',
-         'card_image_user': '/static/images/user-image.jpg'},
-    ]
-
-    # Другие данные продуктов
-    return render(request, 'page1.html', {'products_data': products_data})
+    posts = Post.objects.all()
+    return render(request, 'page1.html', {'posts': posts})
 
 
 @login_required
@@ -129,21 +108,28 @@ def add(request):
             print(post.__dict__, '1')  # вывод в консоль введеные данные post для проверки
             return redirect('home')  # Перенаправление на страницу успешного добавления
 
-
         # return redirect('home')  # Перенаправление на страницу успешного добавления
     return render(request, 'page5.html')
 
 
-
 @login_required
-def post(request):
-    # Получаем текущего пользователя
-    user = request.user
-    # Получаем имя пользователя
-    username = user.logging
-    # Получаем все посты, отсортированные по дате создания
-    user_posts = Post.objects.filter(author=user).order_by('created_at')
+def post(request, post_id):
+    # Получение объекта Post или 404 ошибку, если пост не существует
+    post = get_object_or_404(Post, id=post_id)
 
-    context = {'user_posts': user_posts, 'username': username}
-
-    return render(request, 'page6.html')
+    if request.method == 'POST':
+        # Удаление поста
+        if 'delete' in request.POST:
+            if request.user == post.author:
+                post.delete()
+                return redirect('userpage')
+        # Лайк поста
+        elif 'like' in request.POST:
+            # Проверка, что пользователь не является автором поста
+            if request.user != post.author:
+                # Пример обновления количества лайков и сохранения изменений в базе данных
+                post.like += 1  # Увеличиваем количество лайков на 1
+                post.save()
+                return redirect('userpage')
+    # Отображение поста
+    return render(request, 'page6.html', {'post_html': post})
