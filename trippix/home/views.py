@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, logout, login
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import User, Post
 from .forms import RegistrationForm, SearchForm
 from django.http import JsonResponse
@@ -74,11 +74,7 @@ def entry(request):
 
 def index(request):
     posts = Post.objects.all()
-    form = SearchForm(request.GET or None)
-    if form.is_valid():
-        query = form.cleaned_data['query']
-        posts = Post.objects.filter(title__icontains=query)
-    return render(request, 'page1.html', {'posts': posts, 'form': form})
+    return render(request, 'page1.html', {'posts': posts})
 
 
 @login_required
@@ -118,29 +114,22 @@ def add(request):
 
 @login_required
 def post(request, post_id):
+    # Получение объекта Post или 404 ошибку, если пост не существует
+    post = get_object_or_404(Post, id=post_id)
+
     if request.method == 'POST':
         # Удаление поста
         if 'delete' in request.POST:
-            post = Post.objects.get(id=post_id)
             if request.user == post.author:
                 post.delete()
-                return redirect('home')  # Перенаправление на главную страницу после удаления
-            else:
-                return redirect('home')  # Обработка случая, когда пользователь пытается удалить чужой пост
+                return redirect('userpage')
         # Лайк поста
         elif 'like' in request.POST:
-            post = Post.objects.get(id=post_id)
             # Проверка, что пользователь не является автором поста
             if request.user != post.author:
                 # Пример обновления количества лайков и сохранения изменений в базе данных
                 post.like += 1  # Увеличиваем количество лайков на 1
-                post.save()  # Сохраняем изменения в базе данных
-                return redirect('home')  # Перенаправление на главную страницу после лайка
-            else:
-                # Обработка случая, когда автор поста пытается лайкнуть свой пост
-                return redirect('home')  # Например, перенаправить на главную страницу
-    else:
-        # Отображение поста
-        post_html = Post.objects.get(id=post_id)
-        return render(request, 'page6.html', {'post_html': post_html})
-
+                post.save()
+                return redirect('userpage')
+    # Отображение поста
+    return render(request, 'page6.html', {'post_html': post})

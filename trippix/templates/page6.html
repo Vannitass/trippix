@@ -80,13 +80,13 @@
         <!-- Кнопка удаления поста -->
         <form method="POST" action="{% url 'post' post_html.id %}">
             {% csrf_token %}
-            <button type="submit">Удалить</button>
+            <button type="submit" name="delete">Удалить</button>
         </form>
     {% else %}
         <!-- Кнопка лайка -->
         <form method="POST" action="{% url 'post' post_html.id %}">
             {% csrf_token %}
-            <button type="submit">Лайкнуть</button>
+            <button type="submit" name="like">Лайкнуть</button>
         </form>
     {% endif %}
 {% else %}

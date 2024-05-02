@@ -50,11 +50,11 @@
 
 
   <div class="table-div">
-    {% for product in cards %}
+    {% for product in posts %}
         {% if forloop.counter0|divisibleby:4 and not forloop.first %}
             </div><div class="table-div">
         {% endif %}
-        <a href = "" style = "text-decoration:none;">
+        <a href = "{% url 'post' post_id=product.id %}" style = "text-decoration:none;">
             <div class="card">
                 <img class="card-image" src="{{ product.photo.url }}" alt="" />
                 <div class="card-about">
