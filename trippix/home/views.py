@@ -132,3 +132,18 @@ def add(request):
 
         # return redirect('home')  # Перенаправление на страницу успешного добавления
     return render(request, 'page5.html')
+
+
+
+@login_required
+def post(request):
+    # Получаем текущего пользователя
+    user = request.user
+    # Получаем имя пользователя
+    username = user.logging
+    # Получаем все посты, отсортированные по дате создания
+    user_posts = Post.objects.filter(author=user).order_by('created_at')
+
+    context = {'user_posts': user_posts, 'username': username}
+
+    return render(request, 'page6.html')
