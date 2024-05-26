@@ -125,7 +125,28 @@
           {% endfor %}
         </div>
 </div>
-<div id="content2" class="content" style="display:none;">Содержимое для кнопки 2</div>
+<div id="content2" class="content" style="display:none;">
+    <div class="table-div">
+        {% for post_like in user_posts %}
+            {% if forloop.counter0|divisibleby:4 and not forloop.first %}
+                </div><div class="table-div">
+            {% endif %}
+            {% if post_like.post.id %}
+                <a href="{% url 'post' post_id=post_like.post.id %}" style="text-decoration:none;">
+                    <div class="card">
+                        <img class="card-image" src="{{ post_like.photo.url }}" alt="" />
+                        <div class="card-about">
+                            <img class="card-image-user" src="{{ post_like.author.profile_picture.url }}" alt="" />
+                            <b class="card-text">{{ post_like.title }}</b>
+                        </div>
+                    </div>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+
 <div id="content3" class="content" style="display:none;">Содержимое для кнопки 3</div>
 
     </body>

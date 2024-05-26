@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, logout, login
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import User, Post
+from .models import User, Post, Like
 from .forms import RegistrationForm, SearchForm
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
@@ -84,8 +84,8 @@ def userpage(request):
     username = user.logging
     # Получаем все посты, отсортированные по дате создания
     user_posts = Post.objects.filter(author=user).order_by('created_at')
-
-    context = {'user_posts': user_posts, 'username': username}
+    user_like = Like.objects.filter(user=user)
+    context = {'user_posts': user_posts, 'user_like': user_like, 'username': username}
 
     return render(request, 'page4.html', context)
 
@@ -95,19 +95,16 @@ def add(request):
     if request.method == 'POST':
         title = request.POST.get('title')
         descriptor = request.POST.get('descriptor')
-        tegs = request.POST.get('tegs')
-        print(request.FILES)
+        tags = request.POST.get('tags', '')
         # Обработка загрузки изображения
         if request.FILES.get('image'):
             image_file = request.FILES['image']
             # Создаем экземпляр модели Post и сохраняем изображение
-            post = Post(title=title, descriptor=descriptor, tags=tegs, photo=image_file, author=request.user)
+            post = Post(title=title, descriptor=descriptor, tags=tags, photo=image_file, author=request.user, post_like=0)
             post.save()
-            # post.photo.save(image_file.name, image_file, save=True)  # Сохраняем путь к файлу изображения в модели
-            print(post.__dict__, '1')  # вывод в консоль введеные данные post для проверки
-            return redirect('home')  # Перенаправление на страницу успешного добавления
+            # Возвращаемся на домашнюю страницу после успешного добавления поста
+            return redirect('home')
 
-        # return redirect('home')  # Перенаправление на страницу успешного добавления
     return render(request, 'page5.html')
 
 
@@ -124,11 +121,13 @@ def post(request, post_id):
                 return redirect('userpage')
         # Лайк поста
         elif 'like' in request.POST:
-            # Проверка, что пользователь не является автором поста
-            if request.user != post.author:
-                # Пример обновления количества лайков и сохранения изменений в базе данных
-                post.like += 1  # Увеличиваем количество лайков на 1
+            # Проверяем, не лайкал ли пользователь уже этот пост
+            if not Like.objects.filter(user=request.user, post=post).exists():
+                # Создаем новую запись лайка
+                Like.objects.create(user=request.user, post=post)
+                # Увеличиваем количество лайков на 1
+                post.post_like += 1
                 post.save()
-                return redirect('userpage')
+            return redirect('userpage')
     # Отображение поста
     return render(request, 'page6.html', {'post_html': post})

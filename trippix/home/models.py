@@ -62,7 +62,15 @@ class Post(models.Model):
     tags = models.TextField(blank=True)
     photo = models.ImageField(blank=True, upload_to='user_image', null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    like = models.IntegerField(default=0)
+    post_like = models.IntegerField(default=0)
 
     def __str__(self):
         return f'Post by {self.author.logging}'
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ['user', 'post']  # Уникальность комбинации пользователя и поста
