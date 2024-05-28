@@ -125,3 +125,76 @@ a{
     justify-content: flex-start;
 
 }
+
+
+
+
+/*.button-like{
+	border-radius:50px;
+	width:100px;
+	padding:15px ;
+}
+
+.like-div{
+
+	text-align: center;
+	display: flex;
+    flex-direction: row;
+  
+    
+}
+
+
+.button-like:hover{
+	background-color:grey;
+
+}	
+
+
+*/
+.block {
+  width: 60px;
+  height: 40px;
+  background:  #f2f2f2;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(124, 130, 141, 0.2);
+  cursor: pointer;
+  transition: all 0.25s ease-out;
+  margin: 0 auto;
+  margin-top:5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+/*  justify-content: space-between;*/
+/*  padding: 0.2em ;*/
+  gap:0.1em;
+}
+.block .heart-icon {
+  user-select: none;
+  fill: transparent;
+  transition: transform 0.25s ease-out;
+}
+
+.block .heart-icon .fill-color-shape {
+  fill: transparent;
+}
+
+.block .heart-icon.isLiked {
+  filter: drop-shadow(0 3px 5px #c44133);
+}
+
+.block .heart-icon.isLiked .fill-color-shape {
+  transition: fill 0.5s linear;
+  fill: #e74c3c;
+}
+
+.block .heart-icon:hover {
+    transform: translate(-1%, calc(-1% - 3px)) scale(1.03);
+}
+.block .number-of-likes {
+  
+
+  font-size: 15px;
+  user-select: none;
+  color: #292d34;
+}
